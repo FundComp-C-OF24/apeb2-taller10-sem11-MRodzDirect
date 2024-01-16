@@ -7,52 +7,53 @@ Algoritmo E01Matriz
 	Dimension numPares[tam,tam2]
 	Dimension numImpares[tam,tam2]
 	Dimension promedios[tam,tam2]
-	generarPares(numPares)
-	generarImpares(numImpares)
+	generarPares(numPares, tam, tam2)
+	generarImpares(numImpares, tam, tam2)
 	Escribir "La matriz de pares es:"
-	Escribir SinSaltar presentarMatrices(numPares)
+	presentarMatrices(numPares,tam, tam2 )
 	Escribir "La matriz de impares es:"
-	Escribir SinSaltar presentarMatrices(numImpares)
-	calcularPromedios(numPares, numImpares, promedios)
+	presentarMatrices(numImpares,tam ,tam2 )
+	calcularPromedios(numPares, numImpares, promedios, tam, tam2)
 	Escribir "Los promedios de ambas matrices son:"
-	Escribir presentarMatrices(promedios)
+	presentarMatrices(promedios,tam ,tam2)
 FinAlgoritmo
 
-Funcion generarPares(numPares)
-	Para i<-0 Hasta tam Hacer
-		Para j<-0 Hasta tam2 Hacer
+SubProceso generarPares(numPares, tam , tam2)
+	Para i<-0 Hasta tam-1 Hacer
+		Para j<-0 Hasta tam2-1 Hacer
 			numPares[i,j] <- (i * tam2 + j) * 2
 		FinPara
 	FinPara
-FinFuncion
+FinSubProceso
 
-SubProceso  generarImpares(numImpares)
-	Para i<-0 Hasta tam Hacer
-		Para j<-0 Hasta tam2 Hacer
+SubProceso  generarImpares(numImpares, tam, tam2)
+	Para i<-0 Hasta tam-1 Hacer
+		Para j<-0 Hasta tam2-1 Hacer
 			numImpares[i,j] <- (i * tam2 + j) * 2 + 1
 		FinPara
 	FinPara
 FinSubProceso
 
 
-Funcion calcularPromedios(numPares , numImpares, promedios )
-	Para i<-0 Hasta tam Hacer
-		Para j<-0 Hasta tam2 Hacer
+SubProceso calcularPromedios(numPares , numImpares, promedios, tam, tam2 )
+	Para i<-0 Hasta tam-1 Hacer
+		Para j<-0 Hasta tam2-1 Hacer
 			promedios[i,j] <- (numPares[i,j]+numImpares[i,j])/2
 		FinPara
 	FinPara
-FinFuncion
+FinSubproceso
 
 
-Funcion cad=presentarMatrices(numPares)
+
+Funcion presentarMatrices(numPares, tam, tam2 )
 	
 	Definir cad Como Cadena
-	cad <- ""
-	Para i<-0 Hasta tam Hacer
-		Para j<-0 Hasta tam2 Hacer
-			cad <- cad + ConvertirATexto(numPares[i,j]) + Tabulador
+	
+	Para i<-0 Hasta tam-1 Hacer
+		Para j<-0 Hasta tam2-1 Hacer
+			Escribir numPares[i,j]
 		FinPara
-		cad <- cad+ "\n"
+		Escribir ""
 	FinPara
 	
 FinFuncion

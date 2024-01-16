@@ -1,8 +1,7 @@
 Algoritmo PlanillaLuzYPredioUrbano
 	Definir operacion Como Entero
 	Definir costKw, spentKw, houseValue Como Real
-	Definir nombre, cedula Como Caracter
-	Dimension report[1] 
+	Definir nombre, cedula, report Como Cadena
 	Escribir "Ingrese la operacion que desea hacer"
 	Leer operacion
 	Escribir "Ingrese su nombre y cedula"
@@ -16,26 +15,26 @@ Algoritmo PlanillaLuzYPredioUrbano
 			Escribir "Ingrese cuantas Kilovatios usted gasto en este mes"
 			Leer spentKw
 			calcularPlanillaLuz(costKw, spentKw, nombre, cedula, report)
-			Escribir report[0]
+			Escribir report
 		Caso 2:
 			Escribir "==Calcular su Predio Urbano=="
 			Escribir "Ingrese el valor de su inmueble"
 			Leer houseValue
-			calcularPredioUrbano(houseValue, nombre, cedula, report)
-			Escribir report[0]
+			Escribir calcularPredioUrbano(houseValue, nombre, cedula)
+			
 		Defecto:
 			Escribir "Operacion no valida, debe estar entre (1-2)"
 	FinSegun
 FinAlgoritmo
 
-Funcion calcularPlanillaLuz(costKw , spentKw , nombre , cedula , report)
+Funcion calcularPlanillaLuz(costKw , spentKw , nombre , cedula , report Por Referencia)
 	Definir valorPlanilla Como Real
 	valorPlanilla <- costKw * spentKw
-	report[0] <- "Cliente " + nombre + " con cédula " + cedula + " debe cancelar el valor de " + ConvertirATexto(valorPlanilla)
+	report<- "Cliente " + nombre + " con cédula " + cedula + " debe cancelar el valor de " + ConvertirATexto(valorPlanilla)
 FinFuncion
 
-Funcion calcularPredioUrbano(houseValue , nombre , cedula , report)
+Funcion report= calcularPredioUrbano(houseValue , nombre , cedula )
 	Definir valorPredio Como Real
 	valorPredio <- houseValue * 0.02
-	report[0] <- "Cliente " + nombre + " con cédula " + cedula + " tiene un bien inmueble valorado en " + ConvertirATexto(houseValue) + " $ y tiene que pagar de predio de " + ConvertirATexto(valorPredio) + " $"
+	report <- "Cliente " + nombre + " con cédula " + cedula + " tiene un bien inmueble valorado en " + ConvertirATexto(houseValue) + " $ y tiene que pagar de predio de " + ConvertirATexto(valorPredio) + " $"
 FinFuncion

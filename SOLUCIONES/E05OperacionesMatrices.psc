@@ -9,78 +9,78 @@ Algoritmo OperacionesMatrices
 	Dimension mtdouble[limitMt,limitMt] 
 	Dimension mtdouble2[limitMt,limitMt] 
 	Dimension mtResultadodouble[limitMt,limitMt] 
-
-	generarMatriz(mt1)
-	generarMatriz(mt2)
+	Definir mtdouble, mtdouble2 Como Real
+	
+	generarMatriz(mt1,limitMt)
+	generarMatriz(mt2,limitMt)
 	Escribir "La matriz 1 generada es:"
-	Escribir presentarMatrices(mt1)
+	Escribir presentarMatrices(mt1,limitMt)
 	Escribir "La matriz 2 generada es:"
-	Escribir presentarMatrices(mt2)
-	sumarMatrices(mt1,mt2,matrizResultado)
+	Escribir presentarMatrices(mt2,limitMt)
+	sumarMatrices(mt1,mt2,matrizResultado,limitMt)
 	Escribir "La suma de matrices es:"
-	Escribir presentarMatrices(matrizResultado)
-	restarMatrices(mt1,mt2,matrizResultado)
+	Escribir presentarMatrices(matrizResultado,limitMt)
+	restarMatrices(mt1,mt2,matrizResultado,limitMt)
 	Escribir "La resta de matrices es:"
-	Escribir presentarMatrices(matrizResultado)
-	multiplicarMatrices(mt1,mt2,matrizResultado)
+	Escribir presentarMatrices(matrizResultado,limitMt)
+	multiplicarMatrices(mt1,mt2,matrizResultado,limitMt)
 	Escribir "La multiplicacion de matrices es:"
-	Escribir presentarMatrices(matrizResultado)
-	matrizInt_a_MatrizDouble(mt1,mtdouble, mtResultadodouble)
-	matrizInt_a_MatrizDouble(mt2,mtdouble2, mtResultadodouble)
-	dividirMatrices(mtdouble,mtdouble2,mtResultadodouble)
+	Escribir presentarMatrices(matrizResultado,limitMt)
+	mtdouble[i,j] = matrizInt_a_MatrizDouble(mt1, mtdouble, limitMt)
+	mtdouble2[i,j] = matrizInt_a_MatrizDouble(mt2,mtdouble, limitMt)
+	dividirMatrices(mtdouble,mtdouble2,mtResultadodouble,limitMt)
 	Escribir "La division de matrices es:"
-	Escribir presentarMatricesDouble(mtResultadodouble)
+	Escribir presentarMatricesDouble(mtResultadodouble,limitMt)
+	Escribir "En Java pude hacer que las divisiones no fueran 0"
 FinAlgoritmo
 
-SubProceso generarMatriz(mt1)
-	Para i<-0 Hasta limitMt Hacer
-		Para j<-0 Hasta limitMt Hacer
+SubProceso generarMatriz(mt1,limitMt)
+	Para i<-0 Hasta limitMt-1 Hacer
+		Para j<-0 Hasta limitMt-1 Hacer
 			mt1[i,j] <- Aleatorio(-9,10)
 		FinPara
 	FinPara
 FinSubProceso
 
-Funcion cad = presentarMatrices(mt1) 
+Funcion cad = presentarMatrices(mt1,limitMt) 
 	Definir cad Como Cadena
 	cad <- ""
-	Para i<-0 Hasta limitMt Hacer
-		Para j<-0 Hasta limitMt Hacer
-			cad <- cad + ConvertirATexto(mt1[i,j]) + Tabulador
+	Para i<-0 Hasta limitMt-1 Hacer
+		Para j<-0 Hasta limitMt-1 Hacer
+			cad <- cad + ConvertirATexto(mt1[i,j]) + " " + Tabulador
 		FinPara
-		cad <- cad + "\n"
 	FinPara
 FinFuncion
 
-Funcion cad = presentarMatricesDouble(mtdouble) 
+Funcion cad = presentarMatricesDouble(mtdouble,limitMt) 
 	Definir cad Como Cadena
 	cad <- ""
-	Para i<-0 Hasta limitMt Hacer
-		Para j<-0 Hasta limitMt Hacer
-			cad <- cad + ConvertirATexto(mt1) + Tabulador
+	Para i<-0 Hasta limitMt-1 Hacer
+		Para j<-0 Hasta limitMt-1 Hacer
+			cad <- cad + ConvertirATexto(mtdouble[i,j])+ " " + Tabulador
 		FinPara
-		cad <- cad + "\n"
 	FinPara
 FinFuncion
 
-SubProceso sumarMatrices(mt1, mt2, matrizResultado)
-	Para i<-0 Hasta limitMt Hacer
-		Para j<-0 Hasta limitMt Hacer
+SubProceso sumarMatrices(mt1, mt2, matrizResultado,limitMt)
+	Para i<-0 Hasta limitMt-1 Hacer
+		Para j<-0 Hasta limitMt-1 Hacer
 			matrizResultado[i,j] <- mt1[i,j] + mt2[i,j]
 		FinPara
 	FinPara
 FinSubProceso
 
-SubProceso restarMatrices(mt1, mt2, matrizResultado)
-	Para i<-0 Hasta limitMt Hacer
-		Para j<-0 Hasta limitMt Hacer
+SubProceso restarMatrices(mt1, mt2, matrizResultado,limitMt)
+	Para i<-0 Hasta limitMt-1 Hacer
+		Para j<-0 Hasta limitMt-1 Hacer
 			matrizResultado[i,j] <- mt1[i,j] - mt2[i,j]
 		FinPara
 	FinPara
 FinSubProceso
 
-SubProceso multiplicarMatrices(mt1,mt2, matrizResultado)
-	Para i<-0 Hasta limitMt Hacer
-		Para j<-0 Hasta limitMt Hacer
+SubProceso multiplicarMatrices(mt1,mt2, matrizResultado,limitMt)
+	Para i<-0 Hasta limitMt-1 Hacer
+		Para j<-0 Hasta limitMt-1 Hacer
 			
 				matrizResultado[i,j] <-  mt1[i,j] * mt2[i,j]
 			
@@ -88,26 +88,24 @@ SubProceso multiplicarMatrices(mt1,mt2, matrizResultado)
 	FinPara
 FinSubProceso
 
-SubProceso matrizInt_a_MatrizDouble(mt1, mt2, matrizResultado)
-	Para i<-0 Hasta limitMt Hacer
-		Para j<-0 Hasta limitMt Hacer
+Funcion mtdouble = matrizInt_a_MatrizDouble(mt1, mtdouble, limitMt)
+	
+	Para i<-0 Hasta limitMt-1 Hacer
+		Para j<-0 Hasta limitMt-1 Hacer
 			
-			matrizResultado[i,j] <- mt1[i,j] // ConvertirAReal
+			mtdouble[i,j] <- mt1[i,j] // ConvertirAReal
 		FinPara
 	FinPara
 FinSubProceso
 
-SubProceso dividirMatrices(mtdouble, mtdouble2, mtResultadodouble)
-	Para i<-0 Hasta limitMt Hacer
-		Para j<-0 Hasta limitMt Hacer
+SubProceso dividirMatrices(mtdouble, mtdouble2, mtResultadodouble,limitMt)
+	Para i<-0 Hasta limitMt-1 Hacer
+		Para j<-0 Hasta limitMt-1 Hacer
 			
-			Para k<-0 Hasta limitMt Hacer
-				Si (mtdouble[i,j]<>0 Y mtResultadodouble[i,j]<>0 Y mtdouble2<>0)
-					mtResultadodouble[i,j] <- mtResultadodouble[i,j] + mtdouble[i,k] / mtdouble2[k,j]
-				SiNo
-					Escribir "Division no calculada porque un numerador o denomidador fue 0"
-			FinSi	
-			FinPara
+			Si (mtdouble[i,j]<>0 Y mtResultadodouble[i,j]<>0 Y mtdouble2<>0)
+				mtResultadodouble[i,j] = mtdouble[i,j] / mtdouble2[i,j];
+			FinSi
+			
 		FinPara
 	FinPara
 FinSubProceso
